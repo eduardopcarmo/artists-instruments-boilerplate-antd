@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 
 import { useQuery } from '@apollo/react-hooks';
 
+import { Link } from 'react-router-dom';
+
 import { GET_ARTIST_BY_ID } from '../../queries';
 
 import { Layout } from 'antd';
@@ -18,7 +20,7 @@ const { Content } = Layout;
 const ArtistScreen = () => {
   const { artistId } = useParams();
   const { loading, error, data } = useQuery(GET_ARTIST_BY_ID, {
-    variables: { id: 1 },
+    variables: { id: artistId },
   });
 
   if (loading) return 'Loading...';
@@ -31,6 +33,7 @@ const ArtistScreen = () => {
       <AddInstrument />
       <Artist />
       <div>{artistId}</div>
+      <Link to={`/`}>go back home</Link>
     </Content>
   );
 };

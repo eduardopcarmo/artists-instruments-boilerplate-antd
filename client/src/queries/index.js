@@ -11,8 +11,8 @@ export const GET_ARTISTS = gql`
 `;
 
 export const GET_ARTIST_BY_ID = gql`
-  query GetArtist($id: String!) {
-    artists(id: $id) {
+  query GetArtistById($id: String!) {
+    artist(id: $id) {
       id
       firstName
       lastName

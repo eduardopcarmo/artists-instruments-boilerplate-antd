@@ -116,7 +116,6 @@ const typeDefs = gql`
     artist(id: String!): Artist
     instruments: [Instrument]
     instrumentsByArtistId(artistId: String!): [Instrument]
-    artistWithInstruments(id: String!): Artist
   }
 
   type Mutation {
@@ -152,11 +151,6 @@ const resolvers = {
     instruments: () => instruments,
     instrumentsByArtistId: (_, { artistId }) => {
       return instruments.filter((i) => i.artistId === artistId);
-    },
-    artistWithInstruments: (_, { id }) => {
-      const artist = artists.find((p) => p.id === id);
-      artists.instruments = instruments.filter((i) => i.artistId === id);
-      return artist;
     },
   },
   Mutation: {

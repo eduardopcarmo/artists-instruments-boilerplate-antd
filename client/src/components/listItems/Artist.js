@@ -1,41 +1,43 @@
-import React, { useState } from 'react'
-import { Card, List } from 'antd'
+import React, { useState } from 'react';
+import { Card, List } from 'antd';
 
-import { EditOutlined } from '@ant-design/icons'
-import UpdateArtist from '../forms/UpdateArtist'
-import RemoveArtist from '../buttons/RemoveArtist'
+import { Link } from 'react-router-dom';
+
+import { EditOutlined } from '@ant-design/icons';
+import UpdateArtist from '../forms/UpdateArtist';
+import RemoveArtist from '../buttons/RemoveArtist';
 
 const getStyles = () => ({
   card: {
-    width: '500px'
-  }
-})
+    width: '500px',
+  },
+});
 
-const Artist = props => {
-  const [id] = useState(props.id)
-  const [firstName, setFirstName] = useState(props.firstName)
-  const [lastName, setLastName] = useState(props.lastName)
-  const [editMode, setEditMode] = useState(false)
-  const styles = getStyles()
+const Artist = (props) => {
+  const [id] = useState(props.id);
+  const [firstName, setFirstName] = useState(props.firstName);
+  const [lastName, setLastName] = useState(props.lastName);
+  const [editMode, setEditMode] = useState(false);
+  const styles = getStyles();
 
   const fullName = () => {
-    return `${props.firstName} ${props.lastName}`
-  }
+    return `${props.firstName} ${props.lastName}`;
+  };
 
   const updateStateVariable = (variable, value) => {
     switch (variable) {
       case 'firstName':
-        setFirstName(value)
-        break
+        setFirstName(value);
+        break;
       case 'lastName':
-        setLastName(value)
-        break
+        setLastName(value);
+        break;
       default:
-        break
+        break;
     }
-  }
+  };
 
-  const handleButtonClick = () => setEditMode(!editMode)
+  const handleButtonClick = () => setEditMode(!editMode);
 
   return (
     <List.Item key={props.id}>
@@ -50,8 +52,9 @@ const Artist = props => {
       ) : (
         <Card
           actions={[
-            <EditOutlined key='edit' onClick={handleButtonClick} />,
-            <RemoveArtist id={id} firstName={firstName} lastName={lastName} />
+            <EditOutlined key="edit" onClick={handleButtonClick} />,
+            <RemoveArtist id={id} firstName={firstName} lastName={lastName} />,
+            <Link to={`/artists/${id}`}>+ Info</Link>,
           ]}
           style={styles.card}
         >
@@ -59,7 +62,7 @@ const Artist = props => {
         </Card>
       )}
     </List.Item>
-  )
-}
+  );
+};
 
-export default Artist
+export default Artist;
