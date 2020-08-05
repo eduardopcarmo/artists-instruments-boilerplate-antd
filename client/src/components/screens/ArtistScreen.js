@@ -20,7 +20,7 @@ const { Content } = Layout;
 const ArtistScreen = () => {
   const { artistId } = useParams();
   const { loading, error, data } = useQuery(GET_ARTIST_BY_ID, {
-    variables: { id: artistId },
+    variables: { id: `${artistId}` },
   });
 
   if (loading) return 'Loading...';
@@ -31,8 +31,11 @@ const ArtistScreen = () => {
       <Title />
       <AddArtist />
       <AddInstrument />
-      <Artist />
-      <div>{artistId}</div>
+      <Artist
+        id={data.artist.id}
+        firstName={data.artist.firstName}
+        lastName={data.artist.lastName}
+      />
       <Link to={`/`}>go back home</Link>
     </Content>
   );
