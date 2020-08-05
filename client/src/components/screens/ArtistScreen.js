@@ -14,6 +14,7 @@ import Artist from '../listItems/Artist';
 import AddArtist from '../forms/AddArtist';
 import AddInstrument from '../forms/AddInstrument';
 import Title from '../layout/Title';
+import Instruments from '../lists/Instruments';
 
 const { Content } = Layout;
 
@@ -36,6 +37,8 @@ const ArtistScreen = () => {
         firstName={data.artist.firstName}
         lastName={data.artist.lastName}
       />
+      <h1>Instruments</h1>
+      <Instruments artistId={data.artist.id} />
       <Link to={`/`}>go back home</Link>
     </Content>
   );

@@ -63,18 +63,18 @@ export const GET_INSTRUMENTS = gql`
   }
 `;
 
-//export const GET_ARTIST_INSTRUMENTS = gql`
-//  {
-//    instruments($artistId: String!) {
-//      id
-//      year
-//      brand
-//      type
-//      price
-//      artistId
-//    }
-//  }
-//`;
+export const GET_ARTIST_INSTRUMENTS = gql`
+  query GetInstrumentByArtistId($artistId: String!) {
+    instrumentsByArtistId(artistId: $artistId) {
+      id
+      year
+      brand
+      type
+      price
+      artistId
+    }
+  }
+`;
 
 export const ADD_INSTRUMENT = gql`
   mutation AddInstrument(
